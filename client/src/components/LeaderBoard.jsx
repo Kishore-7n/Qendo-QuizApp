@@ -5,13 +5,13 @@ import Footer from './Footer'
 
 const Leaderboard = () => {
     const [leaderboardData, setLeaderboardData] = useState([]);
-     const api = 'http://localhost:3001'
-      //const api = 'https://cyberminds.onrender.com'
+     //const api = 'http://localhost:3001'
+     const api = 'https://qendo.onrender.com';
 
     useEffect(() => {
         const fetchLeaderboardData = async () => {
             try {
-                const response = await fetch(`${api}/quiz/leaderboard`);
+                const response = await fetch(`/api/quiz/leaderboard`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch leaderboard data');
                 }

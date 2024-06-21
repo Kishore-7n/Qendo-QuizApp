@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
-    //const api = 'https://cyberminds.onrender.com'
-    const api = 'http://localhost:3001'
+    const api = 'https://qendo.onrender.com';
+    // const api = 'http://localhost:3001'
     const navigate = useNavigate();
 
     const [regData, setRegData] = useState({
@@ -24,7 +24,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${api}/auth/register`, {
+            const response = await fetch(`/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

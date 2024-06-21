@@ -10,14 +10,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const userInfo = JSON.parse(localStorage.getItem('user'));
-  const api = 'http://localhost:3001';
-  //const api = 'https://cyberminds.onrender.com';
+  //const api = 'http://localhost:3001';
+  const api = 'https://qendo.onrender.com';
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const userId = userInfo.id;
-        const response = await fetch(`${api}/auth/users/${userId}`);
+        const response = await fetch(`/api/auth/users/${userId}`);
         if (response.ok) {
           const data = await response.json();
           setUserData(data);

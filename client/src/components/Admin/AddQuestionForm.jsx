@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
-    //const api = 'https://cyberminds.onrender.com';
-    const api = 'http://localhost:3001'
+    const api = 'https://qendo.onrender.com';
+    //const api = 'http://localhost:3001'
     const [text, setText] = useState('');
     const [answers, setAnswers] = useState([
         { text: '', is_correct: false },
@@ -19,7 +19,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
 
     const fetchQuestions = async () => {
         try {
-            const response = await fetch(`${api}/quiz/quizzes/${quizId}/questions`);
+            const response = await fetch(`/api/quiz/quizzes/${quizId}/questions`);
             const data = await response.json();
             setQuestions(data);
         } catch (error) {

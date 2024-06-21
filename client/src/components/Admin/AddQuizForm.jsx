@@ -7,11 +7,11 @@ const AddQuizForm = ({ onQuizAdded }) => {
     const [totalPoints, setTotalPoints] = useState('');
 
     const handleSubmit = async (e) => {
-        //const api = 'https://cyberminds.onrender.com';
-        const api = 'http://localhost:3001'
+        const api = 'https://qendo.onrender.com';
+        //const api = 'http://localhost:3001'
         e.preventDefault();
         try {
-            const response = await fetch(`${api}/quiz/add`, {
+            const response = await fetch(`/api/quiz/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

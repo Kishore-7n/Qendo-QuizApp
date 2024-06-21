@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 const QuestionMenu = ({ questions, setCurrentQuestionIndex }) => {
-    const api = 'http://localhost:3001';
-    // const api = 'https://cyberminds.onrender.com';
+    // const api = 'http://localhost:3001';
+    const api = 'https://qendo.onrender.com';
     const [userAnsweredQuestions, setUserAnsweredQuestions] = useState([]);
 
     async function fetchUserAnswers() {
         try {
-            const response = await fetch(`${api}/ans/user_answers/view`);
+            const response = await fetch(`/api/ans/user_answers/view`);
             if (!response.ok) {
                 throw new Error('Failed to fetch user answers');
             }

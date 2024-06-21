@@ -3,8 +3,8 @@ import AddQuizForm from './Admin/AddQuizForm';
 import AddQuestionForm from './Admin/AddQuestionForm';
 
 const Admin = () => {
-    //const api = 'https://cyberminds.onrender.com';
-     const api = 'http://localhost:3001'
+    const api = 'https://qendo.onrender.com';
+     //const api = 'http://localhost:3001'
     const [quizzes, setQuizzes] = useState([]);
     const [selectedQuizId, setSelectedQuizId] = useState(null);
 
@@ -14,7 +14,7 @@ const Admin = () => {
 
     const fetchQuizzes = async () => {
         try {
-            const response = await fetch(`${api}/quiz/view`);
+            const response = await fetch(`/api/quiz/view`);
             const data = await response.json();
             setQuizzes(data);
         } catch (error) {

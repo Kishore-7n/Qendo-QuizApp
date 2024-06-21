@@ -5,8 +5,8 @@ import { login, logout } from '../features/userSlice';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
-    // const api = 'https://cyberminds.onrender.com';
-      const api = 'http://localhost:3001'
+    const api = 'https://qendo.onrender.com';
+      //const api = 'http://localhost:3001'
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${api}/auth/login`, {
+            const response = await fetch(`/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

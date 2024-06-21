@@ -7,8 +7,8 @@ import slider from '/images/slider.png';
 import '../App.css';
 
 const Questions = () => {
-  const api = 'http://localhost:3001';
-  // const api = 'https://cyberminds.onrender.com';
+  // const api = 'http://localhost:3001';
+  const api = 'https://qendo.onrender.com';
   const { quizId, quizName } = useParams();
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -35,7 +35,7 @@ const Questions = () => {
 
     const fetchQuizInfo = async () => {
       try {
-        const response = await fetch(`${api}/quiz/quizzes/${quizId}`);
+        const response = await fetch(`/api/quiz/quizzes/${quizId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch quiz information');
         }
@@ -48,7 +48,7 @@ const Questions = () => {
 
     const fetchQuestions = async () => {
       try {
-        const response = await fetch(`${api}/quiz/quizzes/${quizId}/questions`);
+        const response = await fetch(`/api/quiz/quizzes/${quizId}/questions`);
         if (!response.ok) {
           throw new Error('Failed to fetch quiz questions');
         }
@@ -65,7 +65,7 @@ const Questions = () => {
 
     const fetchAnswers = async (questionId) => {
       try {
-        const response = await fetch(`${api}/ans/${questionId}/answers`);
+        const response = await fetch(`/api/ans/${questionId}/answers`);
         if (!response.ok) {
           throw new Error('Failed to fetch answers');
         }
@@ -84,7 +84,7 @@ const Questions = () => {
 
   const fetchAnswersForQuestion = async (questionId) => {
     try {
-      const response = await fetch(`${api}/ans/${questionId}/answers`);
+      const response = await fetch(`/api/ans/${questionId}/answers`);
       if (!response.ok) {
         throw new Error('Failed to fetch answers');
       }
@@ -99,7 +99,7 @@ const Questions = () => {
     try {
       console.log('Saving user answer:', { userId, quizId, questionId, answerId });
 
-      const existingAnswerResponse = await fetch(`${api}/ans/user_answers?questionId=${questionId}`);
+      const existingAnswerResponse = await fetch(`/api/ans/user_answers?questionId=${questionId}`);
       if (!existingAnswerResponse.ok) {
         throw new Error('Failed to fetch existing user answer');
       }
@@ -107,7 +107,7 @@ const Questions = () => {
       console.log('Existing Answer:', existingAnswerData);
 
       if (existingAnswerData.length > 0) {
-        const deleteResponse = await fetch(`${api}/ans/user_answers/${existingAnswerData[0].id}`, {
+        const deleteResponse = await fetch(`/api/ans/user_answers/${existingAnswerData[0].id}`, {
           method: 'DELETE',
         });
         if (!deleteResponse.ok) {
@@ -116,7 +116,7 @@ const Questions = () => {
         console.log('Deleted existing answer:', existingAnswerData[0]);
       }
 
-      const newAnswerResponse = await fetch(`${api}/ans/user_answers`, {
+      const newAnswerResponse = await fetch(`/api/ans/user_answers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ const Questions = () => {
       const newUserAnswer = await newAnswerResponse.json();
       console.log('Saved new answer:', newUserAnswer);
 
-      const updatedUserAnswersResponse = await fetch(`${api}/ans/user_answers`);
+      const updatedUserAnswersResponse = await fetch(`/api/ans/user_answers`);
       if (!updatedUserAnswersResponse.ok) {
         throw new Error('Failed to fetch updated user answers');
       }
@@ -166,7 +166,7 @@ const Questions = () => {
   const handleSubmit = async () => {
     await saveUserAnswer(quizId, questions[currentQuestionIndex].id, selectedAnswer);
 
-    const response = await fetch(`${api}/ans/evaluate`, {
+    const response = await fetch(`/api/ans/evaluate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ const Questions = () => {
       body: JSON.stringify({ userId, quizId }),
     });
 
-    const userResponse = await fetch(`${api}/ans/user_answers/view`);
+    const userResponse = await fetch(`/api/ans/user_answers/view`);
     const data = await userResponse.json();
     console.log("Data : ", data);
     setFinalUserAnswers(data);
@@ -187,7 +187,7 @@ const Questions = () => {
 
     console.log('Attended:', attendedQuestions);
 
-    const deleteResponse = await fetch(`${api}/ans/delete_user_answers`, {
+    const deleteResponse = await fetch(`/api/ans/delete_user_answers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ const Questions = () => {
   const handleEndRound = async () => {
     await saveUserAnswer(quizId, questions[currentQuestionIndex].id, selectedAnswer);
 
-    const response = await fetch(`${api}/ans/evaluate`, {
+    const response = await fetch(`/api/ans/evaluate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -248,7 +248,7 @@ const Questions = () => {
 
     console.log('Attended:', attendedQuestions);
 
-    const deleteResponse = await fetch(`${api}/ans/delete_user_answers`, {
+    const deleteResponse = await fetch(`/api/ans/delete_user_answers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import QuestionMenu from './QuestionMenu';
 
 const UpperSection = ({ onStopTimer, initialTime, onTimeout, quizName, quizId, questions, currentQuestionIndex, setCurrentQuestionIndex, userAnswers, handleEndRound }) => {
-    const api = 'http://localhost:3001';
+    //const api = 'http://localhost:3001';
+    const api = 'https://qendo.onrender.com';
 
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,7 +15,7 @@ const UpperSection = ({ onStopTimer, initialTime, onTimeout, quizName, quizId, q
             const storedUser = JSON.parse(localStorage.getItem('user'));
             const userId = storedUser.id;
 
-            const response = await fetch(`${api}/ans/delete_user_answers`, {
+            const response = await fetch(`/api/ans/delete_user_answers`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

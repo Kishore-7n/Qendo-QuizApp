@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import InstructionPage from '../InstructionPage'; // Adjust the import path if necessary
+import InstructionPage from '../InstructionPage';
 
 const MainContent = () => {
-    // const api = 'https://cyberminds.onrender.com';
-    const api = 'http://localhost:3001';
+    const api = 'https://qendo.onrender.com';
+    //const api = 'http://localhost:3001';
     const [quizzes, setQuizzes] = useState([]);
     const [selectedQuizId, setSelectedQuizId] = useState(null);
     const [ins, setIns] = useState(false);
@@ -20,7 +20,7 @@ const MainContent = () => {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response = await fetch(`${api}/quiz/view`);
+                const response = await fetch(`/api/quiz/view`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }
