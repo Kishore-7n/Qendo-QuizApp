@@ -1,0 +1,33 @@
+/* App.css or styles.css */
+.hover-underline::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    border-radius: 4px;
+    background-color: #5C4EBF;
+    transition: height 0.3s ease;
+    opacity: 0;
+}
+
+.hover-underline:hover::before {
+    opacity: 1;
+    height: 100%;
+}
+
+.slider-handle {
+    width: 20px;
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.slider-handle img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
