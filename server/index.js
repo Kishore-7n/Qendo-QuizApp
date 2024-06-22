@@ -86,12 +86,16 @@ CREATE TABLE IF NOT EXISTS  user_answers (
 
 // })
 
+
+
 app.use('/auth', authRoutes);
 app.use('/quiz', quizRoutes);
 app.use('/ans', ansRoutes);
 
 
-
+app.get('/', (req,res) => {
+    res.send("Backend is Working");
+})
 
 
 app.listen(port, () => {

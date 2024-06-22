@@ -25,7 +25,7 @@ const AddAnswerForm = ({ questionId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await fetch(`${api}/quiz/questions/${questionId}/answers`, {
+            await fetch(`/api/quiz/questions/${questionId}/answers`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

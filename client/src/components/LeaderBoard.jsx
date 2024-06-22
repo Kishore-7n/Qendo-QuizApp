@@ -53,7 +53,7 @@ const Leaderboard = () => {
                                     : index === 1 
                                     ? 'bg-gray-400' 
                                     : index === 2 
-                                    ? 'bg-orange-400' 
+                                    ? 'bg-orange' 
                                     : ''
                                 }
                             >

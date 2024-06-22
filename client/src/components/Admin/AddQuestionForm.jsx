@@ -33,7 +33,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
 
         try {
 
-            const response = await fetch(`${api}/quiz/questions/${question.id}`);
+            const response = await fetch(`/api/quiz/questions/${question.id}`);
             const updatedQuestion = await response.json();
 
 
@@ -76,7 +76,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
 
             if (selectedQuestion) {
 
-                const response = await fetch(`${api}/quiz/questions/${selectedQuestion.id}`, {
+                const response = await fetch(`/api/quiz/questions/${selectedQuestion.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
                 newQuestion = await response.json();
             } else {
 
-                const questionResponse = await fetch(`${api}/quiz/${quizId}/questions`, {
+                const questionResponse = await fetch(`/api/quiz/${quizId}/questions`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
 
       
             const answerPromises = answers.map(answer =>
-                fetch(`${api}/quiz/questions/${newQuestion.id}/answers`, {
+                fetch(`/api/quiz/questions/${newQuestion.id}/answers`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const AddQuestionForm = ({ quizId, onQuestionAdded }) => {
                                 type="radio"
                                 checked={answer.is_correct}
                                 onChange={(e) => handleAnswerChange(index, 'is_correct', e.target.checked)}
-                                className="radio"
+                                className="appearance-none w-4 h-4 border-2 border-blue-500 rounded-full checked:bg-blue-500"
                                 name={`correct-answer-${index}`}
                             />
                             <span className="ml-1">Correct</span>
